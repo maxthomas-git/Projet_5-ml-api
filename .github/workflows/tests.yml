@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -U pip
-          pip install pytest fastapi uvicorn pandas scikit-learn sqlalchemy psycopg2-binary joblib
+          pip install pytest fastapi uvicorn pandas scikit-learn sqlalchemy psycopg2-binary joblib httpx
 
       - name: Run tests
         run: pytest
