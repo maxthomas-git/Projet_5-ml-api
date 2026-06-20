@@ -6,6 +6,7 @@ import pandas as pd
 import joblib
 from deploiement_modele_ml.code.train_model import create_features
 from deploiement_modele_ml.database.db_connection import engine
+import os
 
 app = FastAPI()
 
@@ -59,11 +60,7 @@ def predict(data: InputData):
     df = pd.DataFrame([data.model_dump()])
     
     # transformation de la donnée brut de % (string) en int
-    df["augementation_salaire_precedente"] = (
-        df["augementation_salaire_precedente"]
-        .str.replace("%", "", regex=False)
-        .astype(int)
-    )
+    df["augementation_salaire_precedente"] = (df["augementation_salaire_precedente"].str.replace("%", "", regex=False).astype(int))
     
     # création des features dérivées
     df = create_features(df)
@@ -85,16 +82,13 @@ def predict(data: InputData):
     log_data["probabilite_depart"] = float(proba)
     log_data["seuil_utilise"] = THRESHOLD
 
-    pd.DataFrame([log_data]).to_sql(
-        "prediction_logs",
-        engine,
-        if_exists="append",
-        index=False
-    )
+    if not os.getenv("CI"):
+        pd.DataFrame([log_data]).to_sql("prediction_logs", 
+                                        engine, 
+                                        if_exists="append", 
+                                        index=False)
 
-    return {
-        "a_quitte_l_entreprise": bool(prediction),
-        "probabilite_depart": float(proba),
-        "seuil_utilise": THRESHOLD
-    }
+    return {"a_quitte_l_entreprise": bool(prediction),
+            "probabilite_depart": float(proba),
+            "seuil_utilise": THRESHOLD}
 
