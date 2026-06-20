@@ -24,5 +24,8 @@ jobs:
           pip install -U pip
           pip install pytest fastapi uvicorn pandas scikit-learn sqlalchemy psycopg2-binary joblib httpx
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+
       - name: Run tests
         run: pytest
