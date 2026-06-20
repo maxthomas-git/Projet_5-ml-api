@@ -1,23 +1,24 @@
 import pandas as pd
-from deploiement_modele_ml.database.db_connection import engine
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, FunctionTransformer, OneHotEncoder, OrdinalEncoder
 from sklearn.compose import ColumnTransformer
 import joblib
 from sklearn.linear_model import LogisticRegression
-
+import os
 
 # chargement des données
 def dataset():
     
    # MODE CI/CD (GitHub Actions)
-   if engine is None:
+   if os.getenv("CI"):
        Evaluation = pd.read_csv("deploiement_modele_ml/data/extrait_eval.csv")
        Sirh = pd.read_csv("deploiement_modele_ml/data/extrait_sirh.csv")
        Sondage = pd.read_csv("deploiement_modele_ml/data/extrait_sondage.csv")
    # MODE LOCAL (PostgreSQL)
    else:
+       from deploiement_modele_ml.database.db_connection import engine
+       
        Evaluation = pd.read_sql('SELECT * FROM "Evaluation"', engine) 
        Sirh = pd.read_sql('SELECT * FROM "Sirh"', engine) 
        Sondage = pd.read_sql('SELECT * FROM "Sondage"', engine)
