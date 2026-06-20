@@ -10,19 +10,27 @@ from sklearn.linear_model import LogisticRegression
 
 # chargement des données
 def dataset():
-    Evaluation = pd.read_sql('SELECT * FROM "Evaluation"', engine)
-    Sirh = pd.read_sql('SELECT * FROM "Sirh"', engine)
-    Sondage = pd.read_sql('SELECT * FROM "Sondage"', engine)
+    
+   # MODE CI/CD (GitHub Actions)
+   if engine is None:
+       Evaluation = pd.read_csv("deploiement_modele_ml/data/extrait_eval.csv")
+       Sirh = pd.read_csv("deploiement_modele_ml/data/extrait_sirh.csv")
+       Sondage = pd.read_csv("deploiement_modele_ml/data/extrait_sondage.csv")
+   # MODE LOCAL (PostgreSQL)
+   else:
+       Evaluation = pd.read_sql('SELECT * FROM "Evaluation"', engine) 
+       Sirh = pd.read_sql('SELECT * FROM "Sirh"', engine) 
+       Sondage = pd.read_sql('SELECT * FROM "Sondage"', engine)
 
-    # Fusion des tableaux mirh et sondage. On appelle ce nouveau tableau Data
-    Data = Sirh.merge(Sondage, left_on="id_employee", right_on="code_sondage")
-    Data = Data.drop(columns=["code_sondage"])
+   # Fusion des tableaux mirh et sondage. On appelle ce nouveau tableau Data
+   Data = Sirh.merge(Sondage, left_on="id_employee", right_on="code_sondage")
+   Data = Data.drop(columns=["code_sondage"])
 
-    #Fusion des tableaux Data et Evaluation
-    Evaluation["eval_number"] = Evaluation["eval_number"].str.replace("E_", "").astype(int)
-    Data = Data.merge(Evaluation, left_on="id_employee", right_on = "eval_number")
-    Data = Data.drop(columns=["eval_number"])
-    return Data
+   #Fusion des tableaux Data et Evaluation
+   Evaluation["eval_number"] = Evaluation["eval_number"].str.replace("E_", "").astype(int)
+   Data = Data.merge(Evaluation, left_on="id_employee", right_on = "eval_number")
+   Data = Data.drop(columns=["eval_number"])
+   return Data
 
 
 # Nettoyage

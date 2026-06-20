@@ -21,11 +21,6 @@ __pycache__/
 .ipynb_checkpoints/
 
 # =========================
-# MODELES ML (optionnel mais recommandé)
-# =========================
-deploiement_modele_ml/models/*.pkl
-
-# =========================
 # LOGS
 # =========================
 *.log
