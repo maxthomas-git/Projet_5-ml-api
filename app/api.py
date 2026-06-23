@@ -7,14 +7,12 @@ import joblib
 from code.train_model import create_features
 from database.db_connection import engine
 import os
-from pathlib import Path
 
 app = FastAPI()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 
-model = joblib.load(BASE_DIR / "models/model.pkl")
-preprocessor = joblib.load(BASE_DIR / "models/preprocessor.pkl")
+model = joblib.load("models/model.pkl")
+preprocessor = joblib.load("models/preprocessor.pkl")
 
 THRESHOLD = 0.4
 
