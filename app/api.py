@@ -57,38 +57,28 @@ def home():
 @app.post("/predict")
 def predict(data: InputData):
 
-    # conversion en DataFrame
-    df = pd.DataFrame([data.model_dump()])
-    
-    # transformation de la donnée brut de % (string) en int
-    df["augementation_salaire_precedente"] = (df["augementation_salaire_precedente"].str.replace("%", "", regex=False).astype(int))
-    
-    # création des features dérivées
-    df = create_features(df)
+    try:
+        df = pd.DataFrame([data.model_dump()])
 
-    # preprocessing
-    
-    X = preprocessor.transform(df)
+        df["augementation_salaire_precedente"] = (
+            df["augementation_salaire_precedente"]
+            .str.replace("%", "", regex=False)
+            .astype(int)
+        )
 
-    # probabilité classe 1 (départ)
-    proba = model.predict_proba(X)[0][1]
+        df = create_features(df)
 
-    # seuil métier
-    prediction = 1 if proba >= THRESHOLD else 0
+        X = preprocessor.transform(df)
 
-    # enregistrement des inputs et outputs dans PostgreSQL
-    log_data = data.model_dump()
+        proba = model.predict_proba(X)[0][1]
 
-    log_data["prediction"] = bool(prediction)
-    log_data["probabilite_depart"] = float(proba)
-    log_data["seuil_utilise"] = THRESHOLD
+        prediction = 1 if proba >= THRESHOLD else 0
 
-    if not os.getenv("CI"):
-        pd.DataFrame([log_data]).to_sql("prediction_logs", 
-                                        engine, 
-                                        if_exists="append", 
-                                        index=False)
-
-    return {"a_quitte_l_entreprise": bool(prediction),
+        return {
+            "a_quitte_l_entreprise": bool(prediction),
             "probabilite_depart": float(proba),
-            "seuil_utilise": THRESHOLD}
+            "seuil_utilise": THRESHOLD
+        }
+
+    except Exception as e:
+        return {"error": str(e)}
