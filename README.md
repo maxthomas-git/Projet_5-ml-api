@@ -60,8 +60,8 @@ Pandas est utilisé pour :
 Le projet est organisé selon une architecture modulaire séparant les différentes étapes du pipeline ML :  
 
 
-`deploiement_modele_ml/`  
-│  
+
+
 ├── app/  
 │ └── api.py  
 │ → API FastAPI  
@@ -144,28 +144,28 @@ GRANT ALL PRIVILEGES ON DATABASE employes_db TO attrition_user;
 
 
 ```bash
-python -m deploiement_modele_ml.database.db_connection
+python -m database.db_connection
 ```
 ### Chargement des données dans la base de donnée postgresql
 
 ```bash
-python -m deploiement_modele_ml.database.import_csv
+python -m database.import_csv
 ```
 ### Création de la base de données qui récupèrera les données testées
 
 ```bash
-python -m deploiement_modele_ml.database.create_prediction_tables
+python -m database.create_prediction_tables
 ```
 
 ## Chargement, Nettoyage, prétraitement et entrainement du modèle
 
 ```bash
-python -m deploiement_modele_ml.code.train_model
+python -m code.train_model
 ```
 
 ## Lancer l’API
 ```bash
-uvicorn deploiement_modele_ml.app.api:app --reload
+uvicorn app.api:app --reload
 ```
 Accès :  
 - http://127.0.0.1:8000  
@@ -213,12 +213,12 @@ Les données utilisées pour entraîner le modèle proviennent de trois sources 
 Ces données peuvent être mises à jour régulièrement en relançant le script :  
 
 ```bash
-python -m deploiement_modele_ml.database.import_csv
+python -m database.import_csv
 ```
 ### Réentrainement du model
 
 ```bash
-python -m deploiement_modele_ml.code.train_model
+python -m code.train_model
 ```
 
 ### Mise à jour en production
@@ -228,7 +228,7 @@ Lorsqu’un nouveau modèle est généré :
 - remplacer les fichiers dans models/ (les fichiers .pkl)  
 - redémarrer l’API FastAPI:
 ```bash
-uvicorn deploiement_modele_ml.app.api:app --reload
+uvicorn app.api:app --reload
 ```
 
 ## Auteur  
