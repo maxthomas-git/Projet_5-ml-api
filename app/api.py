@@ -83,11 +83,8 @@ def predict(data: InputData):
     log_data["probabilite_depart"] = float(proba)
     log_data["seuil_utilise"] = THRESHOLD
 
-    #if not os.getenv("CI"):
-       # pd.DataFrame([log_data]).to_sql("prediction_logs", 
-                                        #engine, 
-                                        #if_exists="append", 
-                                        #index=False)
+    if os.getenv("ENV") == "local": 
+        pd.DataFrame([log_data]).to_sql("prediction_logs",engine, if_exists="append", index=False)
 
     return {"a_quitte_l_entreprise": bool(prediction),
             "probabilite_depart": float(proba),
