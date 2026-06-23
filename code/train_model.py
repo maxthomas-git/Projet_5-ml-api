@@ -17,7 +17,7 @@ def dataset():
        Sondage = pd.read_csv("deploiement_modele_ml/data/extrait_sondage.csv")
    # MODE LOCAL (PostgreSQL)
    else:
-       from deploiement_modele_ml.database.db_connection import engine
+       from database.db_connection import engine
        
        Evaluation = pd.read_sql('SELECT * FROM "Evaluation"', engine) 
        Sirh = pd.read_sql('SELECT * FROM "Sirh"', engine) 

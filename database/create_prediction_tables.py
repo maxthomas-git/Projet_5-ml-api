@@ -1,5 +1,5 @@
 from sqlalchemy import text
-from deploiement_modele_ml.database.db_connection import engine
+from database.db_connection import engine
 
 
 

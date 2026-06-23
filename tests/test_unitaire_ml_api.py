@@ -1,11 +1,11 @@
 import pandas as pd
 from fastapi.testclient import TestClient #simuler une requette hppt vers l'api sans lancer un serveur
 
-from deploiement_modele_ml.code.train_model import dataset # charge les données
-from deploiement_modele_ml.code.train_model import clean_data # nettoie les données
-from deploiement_modele_ml.code.train_model import create_features # créé des variables dérivées
+from code.train_model import dataset # charge les données
+from code.train_model import clean_data # nettoie les données
+from code.train_model import create_features # créé des variables dérivées
 
-from deploiement_modele_ml.app.api import app, model, preprocessor # application fastapi, model entrainé, et pipeline de prétraitement
+from app.api import app, model, preprocessor # application fastapi, model entrainé, et pipeline de prétraitement
 
 
 client = TestClient(app) # création d'un client test

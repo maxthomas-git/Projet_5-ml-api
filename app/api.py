@@ -4,8 +4,8 @@ from pydantic import Field
 from typing import Literal
 import pandas as pd
 import joblib
-from deploiement_modele_ml.code.train_model import create_features
-from deploiement_modele_ml.database.db_connection import engine
+from code.train_model import create_features
+from database.db_connection import engine
 import os
 from pathlib import Path
 
