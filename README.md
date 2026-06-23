@@ -121,9 +121,18 @@ uv sync
 
 ### 2. Activer l’environnement
 
+
 ```bash
 source .venv/bin/activate
 ```
+
+## Définition d'une variable d'environnement en local
+
+
+```bash
+export ENV=local
+```
+
 
 ## Base de données (PostgreSQL)
 

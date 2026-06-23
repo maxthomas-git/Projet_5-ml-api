@@ -8,6 +8,7 @@ from code.train_model import create_features
 from database.db_connection import engine
 import os
 
+
 app = FastAPI()
 
 
