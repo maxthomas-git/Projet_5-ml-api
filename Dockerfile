@@ -4,11 +4,9 @@ WORKDIR /app
 
 COPY . /app
 
-ENV PYTHONPATH=/app
-
-RUN pip install --no-cache-dir uv
+RUN pip install uv
 RUN uv sync
 
 EXPOSE 7860
 
-CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["uv", "run", "uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "7860"]
