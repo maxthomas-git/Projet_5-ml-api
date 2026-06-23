@@ -192,11 +192,12 @@ python -m pytest
 ```
 
 ## CI/CD
-
+  
 Le projet utilise GitHub Actions pour :  
 - installer les dépendances  
 - exécuter les tests automatiquement  
 - valider chaque push sur main  
+- valider chaque pull request sur main  
 
 Workflow :  
 .github/workflows/tests.yml
