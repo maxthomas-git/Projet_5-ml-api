@@ -12,9 +12,9 @@ def dataset():
     
    # MODE CI/CD (GitHub Actions)
    if os.getenv("CI"):
-       Evaluation = pd.read_csv("deploiement_modele_ml/data/extrait_eval.csv")
-       Sirh = pd.read_csv("deploiement_modele_ml/data/extrait_sirh.csv")
-       Sondage = pd.read_csv("deploiement_modele_ml/data/extrait_sondage.csv")
+       Evaluation = pd.read_csv("data/extrait_eval.csv")
+       Sirh = pd.read_csv("data/extrait_sirh.csv")
+       Sondage = pd.read_csv("data/extrait_sondage.csv")
    # MODE LOCAL (PostgreSQL)
    else:
        from database.db_connection import engine
