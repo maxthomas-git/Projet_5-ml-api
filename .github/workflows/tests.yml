@@ -54,32 +54,10 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
 
-      - name: Clone Hugging Face Space
+      - name: Deploy directly to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git clone --depth=1 https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api space
-          cd space
-          git lfs install
-          git lfs pull
-
-      - name: Sync project to Space
-        run: |
-          find space -mindepth 1 -delete
-
-          # API + MODEL
-          cp -r ./models space/
-          cp -r ./app space/
-
-          # uv project files
-          cp ./pyproject.toml space/
-
-      - name: Commit and push to Space
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          cd space
-
           git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api
 
           git add .
