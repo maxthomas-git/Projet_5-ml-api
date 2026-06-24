@@ -58,7 +58,10 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git clone https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api space
+          git clone --depth=0 https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api space
+          cd space
+          git lfs install
+          git lfs pull
 
       - name: Sync project to Space
         run: |
