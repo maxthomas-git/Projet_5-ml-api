@@ -43,29 +43,28 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Deploy debug
+      - name: Deploy to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
 
-          echo "=== CHECK FILES ==="
-          ls -R
+          echo "=== CLONE HF SPACE ==="
+          git clone https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api hf_space
+
+          echo "=== COPY FILES ==="
+          cp -r app hf_space/
+          cp -r models hf_space/
+          cp pyproject.toml hf_space/
+
+          cd hf_space
 
           echo "=== ADD ==="
           git add .
 
-          echo "=== STATUS ==="
-          git status
-
           echo "=== COMMIT ==="
-          git commit -m "auto deploy" || echo "NO COMMIT MADE"
-
-          echo "=== REMOTE ==="
-          git remote -v
-
-          git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api || true
+          git commit -m "auto deploy" || echo "NO CHANGES TO COMMIT"
 
           echo "=== PUSH ==="
-          git push hf main --force
+          git push
