@@ -82,4 +82,4 @@ jobs:
           git add .
           git commit -m "Auto deploy from GitHub Actions" || exit 0
 
-          git push hf main
+          git push hf main --force
