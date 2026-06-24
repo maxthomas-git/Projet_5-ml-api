@@ -38,16 +38,20 @@ def test_clean_data_retour_dataframe():
 
     assert isinstance(result, pd.DataFrame)
     assert "id_employee" not in result.columns
+    assert "ayant_enfants" not in result.columns
+    assert "niveau_hierarchique_poste" not in result.columns
+    assert "nombre_heures_travailless" not in result.columns
+    assert "nombre_employee_sous_responsabilite" not in result.columns
 
 
 def test_conversion_pourcentage_en_int():
     df = pd.DataFrame({
-        "augementation_salaire_precedente": ["10%", "20%", "0%"]
+        "augementation_salaire_precedente": ["10%", "20%", "0%", "10 %", "0 %"]
     })
 
     result = clean_data(df)
 
-    assert list(result["augementation_salaire_precedente"]) == [10, 20, 0]
+    assert list(result["augementation_salaire_precedente"]) == [10, 20, 0, 10, 0]
 
 
 def test_creation_features():
