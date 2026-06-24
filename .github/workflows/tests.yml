@@ -43,16 +43,29 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Deploy to Hugging Face Space
+      - name: Deploy debug
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
 
-          git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api
+          echo "=== CHECK FILES ==="
+          ls -R
 
+          echo "=== ADD ==="
           git add .
-          git commit -m "auto deploy" || exit 0
 
+          echo "=== STATUS ==="
+          git status
+
+          echo "=== COMMIT ==="
+          git commit -m "auto deploy" || echo "NO COMMIT MADE"
+
+          echo "=== REMOTE ==="
+          git remote -v
+
+          git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api || true
+
+          echo "=== PUSH ==="
           git push hf main --force
