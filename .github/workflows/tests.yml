@@ -65,7 +65,7 @@ jobs:
           find space -mindepth 1 -delete
 
           # API + MODEL
-          cp -r ./model space/
+          cp -r ./models space/
           cp -r ./app space/
 
           # uv project files
