@@ -72,8 +72,14 @@ jobs:
           cp ./pyproject.toml space/
 
       - name: Commit and push to Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           cd space
+
+          git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/maximilien777/Projet5_ml_api
+
           git add .
           git commit -m "Auto deploy from GitHub Actions" || exit 0
-          git push
+
+          git push hf main
