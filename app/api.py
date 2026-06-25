@@ -52,7 +52,7 @@ class InputData(BaseModel):
 
 @app.get("/")
 def home():
-    return {"message": "API Projet 5 OK !"}
+    return {"message": "API Projet 5 OK"}
 
 
 @app.post("/predict")
