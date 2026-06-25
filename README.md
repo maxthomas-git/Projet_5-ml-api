@@ -215,6 +215,9 @@ Le projet utilise GitHub Actions pour :
 - exécuter les tests automatiquement  
 - valider chaque push sur main  
 - valider chaque pull request sur main  
+- déployer automatiquement l'application sur le Space Hugging Face après validation des tests  
+- copier les fichiers nécessaires (application, modèles et configuration) vers le dépôt du Space Hugging Face  
+- effectuer automatiquement un commit et un push vers le dépôt Hugging Face pour déclencher le redéploiement  
 
 Workflow :  
 .github/workflows/tests.yml
@@ -247,6 +250,16 @@ Lorsqu’un nouveau modèle est généré :
 ```bash
 uvicorn app.api:app --reload
 ```
+
+## URL du deploiement
+
+Le dépôt Hugging Face Space:  
+
+https://huggingface.co/spaces/maximilien777/Projet5_ml_api
+
+L'API est déployée sur Hugging Face Spaces et sa documentation Swagger est disponible à l'adresse :  
+
+https://maximilien777-projet5-ml-api.hf.space/docs  
 
 ## Auteur  
 Maximilien THOMAS  
