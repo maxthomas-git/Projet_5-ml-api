@@ -30,8 +30,12 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
 
-      - name: Run tests
-        run: pytest
+      - name: Run tests with coverage
+        run: |
+          pytest \
+          --cov=app \
+          --cov=code \
+          --cov-report=term-missing
 
 
   deploy_space:
