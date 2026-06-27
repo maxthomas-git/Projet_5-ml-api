@@ -190,41 +190,41 @@ Accès :
 
 Entrée : données employé (JSON)
 
-{
-  "age": 24,
-  "revenu_mensuel": 2700,
-  "nombre_experiences_precedentes": 1,
-  "annee_experience_totale": 5,
-  "annees_dans_l_entreprise": 3,
-  "annees_dans_le_poste_actuel": 2,
-  "augementation_salaire_precedente": "25 %",
-  "nombre_participation_pee": 0,
-  "nb_formations_suivies": 1,
-  "distance_domicile_travail": 2,
-  "annees_depuis_la_derniere_promotion": 2,
-  "annes_sous_responsable_actuel": 2,
-  "genre": "F",
-  "statut_marital": "Célibataire",
-  "departement": "Commercial",
-  "poste": "Cadre Commercial",
-  "domaine_etude": "Infra & Cloud",
-  "frequence_deplacement": "Occasionnel",
-  "heure_supplementaires": "Oui",
-  "niveau_education": 4,
-  "satisfaction_employee_environnement": 4,
-  "note_evaluation_precedente": 3,
-  "satisfaction_employee_nature_travail": 4,
-  "satisfaction_employee_equipe": 4,
-  "satisfaction_employee_equilibre_pro_perso": 4,
-  "note_evaluation_actuelle": 4
+{  
+  "age": 24,  
+  "revenu_mensuel": 2700,  
+  "nombre_experiences_precedentes": 1,  
+  "annee_experience_totale": 5,  
+  "annees_dans_l_entreprise": 3,  
+  "annees_dans_le_poste_actuel": 2,  
+  "augementation_salaire_precedente": "25 %",  
+  "nombre_participation_pee": 0,  
+  "nb_formations_suivies": 1,  
+  "distance_domicile_travail": 2,  
+  "annees_depuis_la_derniere_promotion": 2,  
+  "annes_sous_responsable_actuel": 2,  
+  "genre": "F",  
+  "statut_marital": "Célibataire",  
+  "departement": "Commercial",  
+  "poste": "Cadre Commercial",  
+  "domaine_etude": "Infra & Cloud",  
+  "frequence_deplacement": "Occasionnel",  
+  "heure_supplementaires": "Oui",  
+  "niveau_education": 4,  
+  "satisfaction_employee_environnement": 4,  
+  "note_evaluation_precedente": 3,  
+  "satisfaction_employee_nature_travail": 4,  
+  "satisfaction_employee_equipe": 4,  
+  "satisfaction_employee_equilibre_pro_perso": 4,  
+  "note_evaluation_actuelle": 4  
 }
 
 Sortie :
 
-{
-  "a_quitte_l_entreprise": true,
-  "probabilite_depart": 0.47021598756070654,
-  "seuil_utilise": 0.4
+{  
+  "a_quitte_l_entreprise": true,   
+  "probabilite_depart": 0.47021598756070654,  
+  "seuil_utilise": 0.4  
 }
 
 ## Tests
