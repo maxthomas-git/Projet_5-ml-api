@@ -124,17 +124,14 @@ uv sync
 source .venv/bin/activate
 ```
 
-## Définition d'une variable d'environnement en local
-
-
-```bash
-export ENV=local
-```
-
-
 ## Base de données (PostgreSQL)
 
 Le projet utilise PostgreSQL en local pour stocker les données.
+
+### Créer un fichier .env
+
+sur le modèle du fichier .env.example créer un fichier .env dans lequel remplacer la valeur de DB_PASSWORD par un mot de passe:
+DB_PASSWORD=your_password
 
 ### Création de la base de données
 
@@ -144,7 +141,7 @@ sudo -u postgres psql
 ```
 - Créer un utilisateur
 ```sql
-CREATE USER attrition_user WITH PASSWORD 'Attrition2026!';
+CREATE USER attrition_user WITH PASSWORD 'your_password';
 ```
 - Créer la base de données
 ```sql
