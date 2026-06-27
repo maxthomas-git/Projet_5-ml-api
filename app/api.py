@@ -4,7 +4,7 @@ from pydantic import Field
 from typing import Literal
 import pandas as pd
 import joblib
-from code.train_model import create_features
+from chargement_nettoyage_model.train_model import create_features
 from database.db_connection import engine
 import os
 

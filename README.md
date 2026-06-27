@@ -67,7 +67,7 @@ Le projet est organisé selon une architecture modulaire séparant les différen
 │ └── api.py  
 │ → API FastAPI  
 │  
-├── code/  
+├── chargement_nettoyage_model/  
 │ └── train_model.py  
 │ → Pipeline complet de machine learning :  
 │ - chargement des données  
@@ -170,7 +170,7 @@ python -m database.create_prediction_tables
 ## Chargement, Nettoyage, prétraitement et entrainement du modèle
 
 ```bash
-python -m code.train_model
+python -m chargement_nettoyage_model.train_model
 ```
 
 ## Lancer l’API
@@ -260,7 +260,7 @@ python -m database.import_csv
 ### Réentrainement du model
 
 ```bash
-python -m code.train_model
+python -m chargement_nettoyage_model.train_model
 ```
 
 ### Mise à jour en production
