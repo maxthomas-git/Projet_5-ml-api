@@ -34,7 +34,7 @@ jobs:
         run: |
           pytest \
           --cov=app \
-          --cov=code \
+          --cov=chargement_nettoyage_model \
           --cov-report=term-missing
 
 
