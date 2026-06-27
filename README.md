@@ -1,3 +1,8 @@
+---
+sdk: docker
+app_file: app/api.py
+pinned: false
+---
 
 # Projet 5 - API de prédiction de départ des employés
 
