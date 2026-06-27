@@ -17,12 +17,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Install dependencies
         run: |
           pip install -U pip
-          pip install pytest fastapi uvicorn pandas scikit-learn sqlalchemy psycopg2-binary joblib httpx
+          pip install pytest pytest-cov fastapi uvicorn pandas scikit-learn sqlalchemy psycopg2-binary joblib httpx
 
       - name: Set CI environment
         run: echo "CI=true" >> $GITHUB_ENV
